@@ -1,7 +1,5 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:myproject_01/screen/reg.dart';
 import 'package:myproject_01/screen/reg.dart';
 import 'package:myproject_01/screen/home.dart';
 
@@ -40,20 +38,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 fontSize: 30
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              controller: email,
-              decoration: InputDecoration(
-                  labelText: "Email",
-                  prefixIcon: Icon(Icons.person),
-                  suffixIcon: Icon(Icons.email),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12)
-                  )
-              ),
-            ),
-          ),
+          MyTextField(email: email),
+          MyTextField(email: email),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
@@ -144,6 +130,33 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
 
         ],
+      ),
+    );
+  }
+}
+
+class MyTextField extends StatelessWidget {
+  const MyTextField({
+    super.key,
+    required this.email,
+  });
+
+  final TextEditingController email;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: TextField(
+        controller: email,
+        decoration: InputDecoration(
+            labelText: "Email",
+            prefixIcon: Icon(Icons.person),
+            suffixIcon: Icon(Icons.email),
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12)
+            )
+        ),
       ),
     );
   }
