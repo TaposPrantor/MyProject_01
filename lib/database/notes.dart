@@ -1,6 +1,6 @@
 
 class NoteData{
-  List note = [
+  static List note = [
     {
       "title" : "Bazar",
       "details" : "Fish=450, Mosla=120"
@@ -12,7 +12,8 @@ class NoteData{
     {
       "title" : "Tour",
       "details" : "Petrol=450, Nasta=120"
-    }
+    },
+
 
   ];
 }
