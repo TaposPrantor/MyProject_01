@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:myproject_01/screen/reg.dart';
 import 'package:myproject_01/screen/home.dart';
+import '../custom_widget/text_widget.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -31,14 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
             width: 450,
             fit: BoxFit.cover,
           ),
-          Text("Log In Here",
-            style: TextStyle(
-                color: Colors.blue,
-                fontWeight: FontWeight.bold,
-                fontSize: 30
-            ),
-          ),
-          MyTextField(email: email),
+          MyTextWidget(title: "LogIN Here"),
           MyTextField(email: email),
           Padding(
             padding: const EdgeInsets.all(8.0),
