@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:myproject_01/custom_widget/text_field.dart';
 import 'login.dart';
 
 
@@ -12,6 +12,11 @@ class RegScreen extends StatefulWidget {
 }
 
 class _RegScreenState extends State<RegScreen> {
+
+  TextEditingController name  = TextEditingController();
+  TextEditingController phone  = TextEditingController();
+  TextEditingController email  = TextEditingController();
+  TextEditingController password  = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,94 +37,12 @@ class _RegScreenState extends State<RegScreen> {
                 fontSize: 30
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              decoration: InputDecoration(
-                  labelText: "Name",
-                  prefixIcon: Icon(Icons.person),
-                  suffixIcon: Icon(Icons.email),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12)
-                  )
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              decoration: InputDecoration(
-                  labelText: "Email",
-                  prefixIcon: const Icon(Icons.lock),
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      // Show/Hide password
-                    },
-                    icon: const Icon(Icons.visibility),
-                  ),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12)
-                  )
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              decoration: InputDecoration(
-                  labelText: "Phone Number",
-                  prefixIcon: const Icon(Icons.lock),
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      // Show/Hide password
-                    },
-                    icon: const Icon(Icons.visibility),
-                  ),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12)
-                  )
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              decoration: InputDecoration(
-                  labelText: "PassWord",
-                  prefixIcon: const Icon(Icons.lock),
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      // Show/Hide password
-                    },
-                    icon: const Icon(Icons.visibility),
-                  ),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12)
-                  )
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              decoration: InputDecoration(
-                  labelText: "ConFirm PassWord",
-                  prefixIcon: const Icon(Icons.lock),
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      // Show/Hide password
-                    },
-                    icon: const Icon(Icons.visibility),
-                  ),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12)
-                  )
-              ),
-            ),
-          ),
+          MyTextField(email: name, hint: "Enter Your Name"),
+          MyTextField(email: phone, hint: "Enter Your Number"),
+          MyTextField(email: email, hint: "Enter Your Email"),
+          MyTextField(email: password, hint: "Enter Your PassWord", obscureText: true,),
           InkWell(
             onTap: () {
-
             },
             child: Card(
               margin: EdgeInsets.all(7),
