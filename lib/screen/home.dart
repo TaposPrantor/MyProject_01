@@ -20,65 +20,68 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       drawer: Drawer(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            UserAccountsDrawerHeader(
-              decoration: const BoxDecoration(
-                color: Colors.blue,
+            Card(
+              child: Image.network(
+                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1Ti3lsyyIz5h2yg7uZWf_Gt_GL47tWHl1OGp5GJ_zxqJ2i_YGf7U3x2Xy&s=10",
+                height: 120,
+                width: double.infinity,
               ),
-              currentAccountPicture: const CircleAvatar(
-                radius: 40,
-                backgroundImage: NetworkImage(
-                  "https://picsum.photos/300/200",
-                ),
+            ),
+            Card(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  MyTextWidget(title: "Tapos Roy Prantor")
+                ],
               ),
-              accountName: const Text(
-                "Tapos Roy",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              accountEmail: const Text("troy@gmail.com"),
             ),
 
-            ListTile(
-              leading: const Icon(Icons.home),
-              title: const Text("Home"),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-
-            ListTile(
-              leading: const Icon(Icons.person),
-              title: const Text("Profile"),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text("Settings"),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-
-            const Divider(),
-
-            ListTile(
-              leading: const Icon(
-                Icons.logout,
-                color: Colors.red,
+            Card(
+              child: Row(
+                children: [
+                  Icon(Icons.person),
+                  SizedBox(width: 10,),
+                  MyTextWidget(title: "People")
+                ],
               ),
-              title: const Text(
-                "Logout",
-                style: TextStyle(color: Colors.red),
+            ),
+            Card(
+              child: Row(
+                children: [
+                  Icon(Icons.group),
+                  SizedBox(width: 10,),
+                  MyTextWidget(title: "Group")
+                ],
               ),
-              onTap: () {
-                Navigator.pop(context);
-              },
+            ),
+            Card(
+              child: Row(
+                children: [
+                  Icon(Icons.mark_chat_unread),
+                  SizedBox(width: 10,),
+                  MyTextWidget(title: "Unread")
+                ],
+              ),
+            ),
+            Card(
+              child: Row(
+                children: [
+                  Icon(Icons.read_more),
+                  SizedBox(width: 10,),
+                  MyTextWidget(title: "Read All")
+                ],
+              ),
+            ),
+            Card(
+              child: Row(
+                children: [
+                  Icon(Icons.settings),
+                  SizedBox(width: 10,),
+                  MyTextWidget(title: "Settings")
+                ],
+              ),
             ),
           ],
         ),
