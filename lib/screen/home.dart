@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   //backgroundColor: Colors.greenAccent,
                   title: MyTextWidget(title: "${NoteData.note[i]['title']}"),
                   content: MyTextWidget(
-                    title: "${NoteData.note[i]["details"]}",
+                    title: "${NoteData.note[i]["details"]}", mLine: 30,
                   ),
                   actions: [
                     ElevatedButton(
@@ -66,7 +66,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             trailing: InkWell(
               onTap: () {
-                
+                title.text = "${NoteData.note[i]['title']}";
+                details.text = "${NoteData.note[i]['details']}";
                 showDialog(
                   barrierDismissible: false,
                     context: context, builder: (context) => AlertDialog(
@@ -80,6 +81,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   actions: [
                     ElevatedButton(onPressed: () {
+                      Navigator.pop(context);
+                    }, child: Text("Cancel")),
+
+                    ElevatedButton(onPressed: () {
+                      if (title.text.isEmpty || details.text.isEmpty) {
+                        return;
+                      }
                       NoteData.note[i]['title'] = title.text;
                       NoteData.note[i]['details'] = details.text;
                       setState(() {});
@@ -103,6 +111,8 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
+          title.clear();
+          details.clear();
           showDialog(
             barrierDismissible: false,
             context: context,
@@ -123,6 +133,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               actions: [
+                ElevatedButton(onPressed: () {
+                  Navigator.pop(context);
+                }, child: Text("Cancel")),
+
                 ElevatedButton(
                   onPressed: () {
                     if (title.text.isEmpty || details.text.isEmpty) {
