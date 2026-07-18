@@ -18,6 +18,71 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: Column(
+          children: [
+            UserAccountsDrawerHeader(
+              decoration: const BoxDecoration(
+                color: Colors.blue,
+              ),
+              currentAccountPicture: const CircleAvatar(
+                radius: 40,
+                backgroundImage: NetworkImage(
+                  "https://picsum.photos/300/200",
+                ),
+              ),
+              accountName: const Text(
+                "Tapos Roy",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              accountEmail: const Text("troy@gmail.com"),
+            ),
+
+            ListTile(
+              leading: const Icon(Icons.home),
+              title: const Text("Home"),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+
+            ListTile(
+              leading: const Icon(Icons.person),
+              title: const Text("Profile"),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text("Settings"),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+
+            const Divider(),
+
+            ListTile(
+              leading: const Icon(
+                Icons.logout,
+                color: Colors.red,
+              ),
+              title: const Text(
+                "Logout",
+                style: TextStyle(color: Colors.red),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
         centerTitle: true,
         title: MyTextWidget(title: "My Notes App", tColor: Colors.blue),
