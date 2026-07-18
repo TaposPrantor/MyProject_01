@@ -42,15 +42,16 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(onPressed: () async{
-        NoteData.note.add(
-          {
-            "title" : "Adda",
-            "details" : "Tea=40, Coffee=120"
-          },
+        showDialog(context: context, builder: (context)=>
+            AlertDialog(
+              title: MyTextWidget(title: "Alert Dialogue"),
+              content: MyTextWidget(title: "Note Title"),
+            )
         );
-        setState(() {
 
-        });
+
+        // NoteData.note.add({"title" : "Adda", "details" : "Tea=40, Coffee=120"},);
+        // setState(() {});
       }, child: Icon(Icons.add),),
     );
   }
