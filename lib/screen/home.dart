@@ -30,16 +30,32 @@ class _HomeScreenState extends State<HomeScreen> {
           child: ListTile(
             onTap: () {
               showDialog(
-                  barrierDismissible: false,
-                  context: context, builder: (context) => AlertDialog(
-                title: MyTextWidget(title: "${NoteData.note[i]['title']}"),
-                content: MyTextWidget(title: "${NoteData.note[i]["details"]}"),
-                actions: [
-                  ElevatedButton(onPressed: () {
-                    Navigator.pop(context);
-                  }, child: Text("OK"))
-                ],
-              ));
+                barrierDismissible: false,
+                context: context,
+                builder: (context) => AlertDialog(
+                  //backgroundColor: Colors.greenAccent,
+                  title: MyTextWidget(title: "${NoteData.note[i]['title']}"),
+                  content: MyTextWidget(
+                    title: "${NoteData.note[i]["details"]}",
+                  ),
+                  actions: [
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue, // Button color
+                        foregroundColor: Colors.white, // Text color
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text("OK"),
+                    ),
+                  ],
+                ),
+              );
+            },
+            onLongPress: () {
+              NoteData.note.removeAt(i);
+              setState(() {});
             },
             leading: CircleAvatar(child: MyTextWidget(title: "${i + 1} ")),
             tileColor: Colors.grey.shade300,
@@ -50,10 +66,36 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             trailing: InkWell(
               onTap: () {
-                NoteData.note.removeAt(i);
-                setState(() {});
+                
+                showDialog(
+                  barrierDismissible: false,
+                    context: context, builder: (context) => AlertDialog(
+                  title: MyTextWidget(title: "Update Your Data"),
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      MyTextField(email: title, hint: "Enter Your Title"),
+                      MyTextField(email: details, hint: "Enter Your details"),
+                    ],
+                  ),
+                  actions: [
+                    ElevatedButton(onPressed: () {
+                      NoteData.note[i]['title'] = title.text;
+                      NoteData.note[i]['details'] = details.text;
+                      setState(() {});
+                      Navigator.pop(context);
+                    }, child: Text("Save"))
+                  ],
+                  
+                )
+                );
+                // NoteData.note[i]['title'] = "tour";
+                // NoteData.note[i]['details'] = "Cost 40";
+                // setState(() {
+                //  
+                // });
               },
-              child: Icon(Icons.delete, color: Colors.red),
+              child: Icon(Icons.edit_note, color: Colors.black87),
             ),
           ),
         ),
@@ -62,6 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           showDialog(
+            barrierDismissible: false,
             context: context,
             builder: (context) => AlertDialog(
               title: MyTextWidget(title: "Add Your Note"),
@@ -82,11 +125,18 @@ class _HomeScreenState extends State<HomeScreen> {
               actions: [
                 ElevatedButton(
                   onPressed: () {
+                    if (title.text.isEmpty || details.text.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please Give Data")));
+                      return;
+                    }
                     NoteData.note.add({
                       "title": title.text,
                       "details": details.text,
                     });
                     setState(() {});
+                    title.clear();
+                    details.clear();
+                    Navigator.pop(context);
                   },
                   child: Text("Add"),
                 ),
